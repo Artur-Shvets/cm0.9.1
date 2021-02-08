@@ -1,0 +1,221 @@
+body {
+  margin: 0;
+  -webkit-user-select: none;
+  background-color: rgb(240, 240, 240);
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.vertex {
+  padding: 5px;
+  display: inline-block;
+  background-color: #C792EA;
+  border-radius: 5px;
+}
+
+.v1 {
+  transition: 0.3s;
+}
+
+.v1:hover {
+  padding: 10px;
+  margin-bottom: -5px;
+  margin-right: -5px;
+  border-radius: 10px;
+}
+
+.paste-block {
+  transition: 0.3s;
+  position: relative;
+  background-color: white;
+  box-shadow: 0px 0px 12px rgb(181, 255, 236);
+  border: 1px solid rgb(181, 255, 236);
+  padding: 10px 0px;
+  /* margin: -5px; */
+  border-radius: 10px;
+}
+
+.work-space {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.svg-space {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.sample {
+  display: table;
+  margin: 20px;
+}
+
+.string {
+  padding: 0px 2px;
+}
+
+.block {
+  transition: 0.3s;
+  padding: 0px 2px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(240, 240, 240, 0.5);
+  box-shadow: -3px -3px 8px rgb(255, 255, 255),
+              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
+              3px 3px 8px rgba(0, 0, 0, 0.1),
+              inset -3px -3px 8px rgba(255, 255, 255, 0.1)
+}
+
+.block:hover {
+  border-radius: 15px;
+  padding: 3px 5px;
+}
+
+.row {
+  padding: 0px 5px;
+  display: table;
+}
+
+.row-block {
+  padding: 0px 5px;
+  display: table;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  transition: 0.3s;
+  background-color: rgba(240, 240, 240, 0.5);
+  box-shadow: -3px -3px 8px rgb(255, 255, 255),
+              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
+              3px 3px 8px rgba(0, 0, 0, 0.1),
+              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.row-block:hover {
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.sub-block {
+  transition: 0.3s;
+  border-radius: 10px;
+  margin-left: 14px;
+  display: block;
+  background-color: rgba(240, 240, 240, 0.5);
+}
+
+.sub-block:hover {
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: -3px -3px 8px rgb(255, 255, 255),
+              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
+              3px 3px 8px rgba(0, 0, 0, 0.1),
+              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.sub-block-default {
+  transition: 0.3s;
+  border-radius: 10px;
+  margin-left: 14px;
+  background-color: rgba(240, 240, 240, 0.5);
+}
+
+.sub-block-default:hover {
+  box-shadow: -3px -3px 8px rgb(255, 255, 255),
+              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
+              3px 3px 8px rgba(0, 0, 0, 0.1),
+              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.main-block {
+  display: table;
+  transition: 0.3s;
+  border-radius: 10px;
+  background-color: rgba(240, 240, 240, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0);
+  box-shadow: -3px -3px 8px rgb(255, 255, 255),
+              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
+              3px 3px 8px rgba(0, 0, 0, 0.1),
+              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.main-block:hover {
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.main-block:hover .sub-block-default {
+  border-radius: 20px;
+  padding: 10px;
+}
+
+/* ___________________________COLORS and SHADOWS________________________ */
+
+.ash-string {
+  color: rgb(99, 99, 99);
+}
+
+.ash-shadow:hover {
+  border: 1px solid rgb(99, 99, 99);
+}
+
+.red-string {
+  color: #F07178;
+  background-color: rgb(240, 240, 240);
+}
+
+.red-shadow {
+  box-shadow: 0px 0px 4px #F07178;
+}
+
+.orange-string {
+  color: #F78C6A;
+}
+
+.orange-shadow:hover {
+  border: 1px solid #F78C6A;
+  box-shadow: 0px 0px 12px #F78C6A;
+}
+
+.blue-string {
+  color: #82AAFF;
+}
+
+.blue-shadow:hover {
+  border: 1px solid #82AAFF;
+  box-shadow: 0px 0px 12px #82AAFF;
+}
+
+.purple-string {
+  color: #C792EA;
+}
+
+.purple-shadow:hover {
+  border: 1px solid #C792EA;
+  box-shadow: 0px 0px 12px #C792EA;
+}
+
+.cyan-string {
+  color: #89DDF3;
+}
+
+.cyan-shadow {
+  box-shadow: 0px 0px 4px #89DDF3;
+}
+
+.white-string {
+  color: white;
+}
+
+.white-shadow {
+  box-shadow: 0px 0px 4px white;
+}
+
+.gray-shadow {
+  box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.4);
+}
