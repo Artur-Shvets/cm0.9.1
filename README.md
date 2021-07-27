@@ -1,2 +1,2 @@
-# cm1.9.1
-Hello World
+# Code Map light
+https://artur-shvets.github.io/cm0.9.1/
