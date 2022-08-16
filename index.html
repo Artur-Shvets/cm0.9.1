@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="block-style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap"
+      rel="stylesheet"
+    />
+    <title>Code Map 0.9.2</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="block-menu.css">
-  <link rel="stylesheet" href="block-style.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-  <title>Code Map 0.9.1</title>
-</head>
+  <body class="body">
+    <div id="work-space">
+      <div id="svg-space"></div>
+      <div id="block-space" class="block-space"></div>
+    </div>
 
-<body class='body'>
-  <div id="svg-space" class="svg-space"></div>
-  <div id="work-space" class="work-space"></div>
-
-  <div id="block-menu" class="block-menu">
-    <div id="variable" class="variable">
-
+    <div id="block-menu" class="block-menu">
       <div class="sample row-block purple-shadow">
         <span class="string purple-string">let</span>
         <span class="block blue-string blue-shadow">name</span>
@@ -43,9 +44,6 @@
         <span class="string cyan-string">;</span>
       </div>
 
-    </div>
-    <div id="function" class="function">
-
       <div class="sample main-block purple-shadow">
         <div class="row">
           <span class="string purple-string">function</span>
@@ -55,7 +53,7 @@
           <span class="string cyan-string">) {</span>
         </div>
         <div class="sub-block">
-          <div class="row row-block purple-shadow">
+          <div class="row-block purple-shadow">
             <span class="string purple-string">return</span>
             <span class="block ash-string ash-shadow">result</span>
             <span class="string cyan-string">;</span>
@@ -71,9 +69,6 @@
         <span class="block ash-string ash-shadow">result</span>
         <span class="string cyan-string">;</span>
       </div>
-
-    </div>
-    <div id="logic" class="logic">
 
       <div class="sample main-block purple-shadow">
         <div class="row">
@@ -94,18 +89,35 @@
         </div>
       </div>
 
+      <div class="sample main-block blue-shadow">
+        <div class="row">
+          <span class="block ash-string ash-shadow">arr</span>
+          <span class="string cyan-string">.</span>
+          <span class="string blue-string">forEach</span>
+          <span class="string cyan-string">(</span>
+          <span class="string cyan-string">(</span>
+          <span class="block strong-orange-string strong-orange-shadow"
+            >item</span
+          >
+          <span class="string cyan-string">,</span>
+          <span class="block strong-orange-string strong-orange-shadow">i</span>
+          <span class="string cyan-string">,</span>
+          <span class="block strong-orange-string strong-orange-shadow"
+            >arr</span
+          >
+          <span class="string cyan-string">)</span>
+          <span class="string cyan-string">{</span>
+        </div>
+        <div class="sub-block-default"></div>
+        <div class="row">
+          <span class="string cyan-string">});</span>
+        </div>
+      </div>
+      <div id="point" conhtenhteditabgle="false"></div>
     </div>
-    <div id="loop" class="loop"></div>
-    <div id="math" class="math"></div>
-    <div id="text" class="text"></div>
-    <div id="list" class="list"></div>
-  </div>
-  </div>
+  </body>
 
-</body>
-
-<footer>
-  <script src="block-script.js"></script>
-</footer>
-
+  <footer>
+    <script type="module" src="index.js"></script>
+  </footer>
 </html>

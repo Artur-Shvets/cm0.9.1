@@ -5,12 +5,43 @@ body {
   font-family: Consolas, monospace;
   font-size: 14px;
   line-height: 1.4;
+  width: 100vw;
+  height: 100vh;
+}
+
+#block-menu {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.06);
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+#work-space {
+  position: relative;
+  height: 100%;
+}
+
+#svg-space {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#block-space {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .vertex {
   padding: 5px;
   display: inline-block;
-  background-color: #C792EA;
+  background-color: #c792ea;
   border-radius: 5px;
 }
 
@@ -25,7 +56,7 @@ body {
   border-radius: 10px;
 }
 
-.paste-block {
+#paste-block {
   transition: 0.3s;
   position: relative;
   background-color: white;
@@ -36,41 +67,35 @@ body {
   border-radius: 10px;
 }
 
-.work-space {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
-
-.svg-space {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
-
 .sample {
-  display: table;
+  /* touch-action: none; */
   margin: 20px;
 }
 
+.sample * {
+  pointer-events: none;
+}
+
+.draggable {
+  /* pointer-events: none; */
+  position: absolute;
+}
+
 .string {
+  pointer-events: none;
   padding: 0px 2px;
 }
 
 .block {
+  pointer-events: none;
   transition: 0.3s;
   padding: 0px 2px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0);
   background-color: rgba(240, 240, 240, 0.5);
   box-shadow: -3px -3px 8px rgb(255, 255, 255),
-              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
-              3px 3px 8px rgba(0, 0, 0, 0.1),
-              inset -3px -3px 8px rgba(255, 255, 255, 0.1)
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
 .block:hover {
@@ -79,11 +104,13 @@ body {
 }
 
 .row {
+  pointer-events: none;
   padding: 0px 5px;
   display: table;
 }
 
 .row-block {
+  touch-action: none;
   padding: 0px 5px;
   display: table;
   border-radius: 10px;
@@ -91,9 +118,8 @@ body {
   transition: 0.3s;
   background-color: rgba(240, 240, 240, 0.5);
   box-shadow: -3px -3px 8px rgb(255, 255, 255),
-              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
-              3px 3px 8px rgba(0, 0, 0, 0.1),
-              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
 .row-block:hover {
@@ -102,6 +128,7 @@ body {
 }
 
 .sub-block {
+  /* pointer-events: none; */
   transition: 0.3s;
   border-radius: 10px;
   margin-left: 14px;
@@ -113,9 +140,8 @@ body {
   padding: 5px;
   border-radius: 15px;
   box-shadow: -3px -3px 8px rgb(255, 255, 255),
-              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
-              3px 3px 8px rgba(0, 0, 0, 0.1),
-              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
 .sub-block-default {
@@ -127,21 +153,21 @@ body {
 
 .sub-block-default:hover {
   box-shadow: -3px -3px 8px rgb(255, 255, 255),
-              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
-              3px 3px 8px rgba(0, 0, 0, 0.1),
-              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
 .main-block {
+  touch-action: none;
+  white-space: nowrap;
   display: table;
   transition: 0.3s;
   border-radius: 10px;
   background-color: rgba(240, 240, 240, 0.5);
   border: 1px solid rgba(255, 255, 255, 0);
   box-shadow: -3px -3px 8px rgb(255, 255, 255),
-              inset 3px 3px 8px rgba(0, 0, 0, 0.01),
-              3px 3px 8px rgba(0, 0, 0, 0.1),
-              inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
 .main-block:hover {
@@ -152,6 +178,11 @@ body {
 .main-block:hover .sub-block-default {
   border-radius: 20px;
   padding: 10px;
+}
+
+.main-parent {
+  position: absolute;
+  /* touch-action: none; */
 }
 
 /* ___________________________COLORS and SHADOWS________________________ */
@@ -165,47 +196,47 @@ body {
 }
 
 .red-string {
-  color: #F07178;
+  color: #f07178;
   background-color: rgb(240, 240, 240);
 }
 
 .red-shadow {
-  box-shadow: 0px 0px 4px #F07178;
+  box-shadow: 0px 0px 4px #f07178;
 }
 
 .orange-string {
-  color: #F78C6A;
+  color: #f78c6a;
 }
 
 .orange-shadow:hover {
-  border: 1px solid #F78C6A;
-  box-shadow: 0px 0px 12px #F78C6A;
+  border: 1px solid #f78c6a;
+  box-shadow: 0px 0px 12px #f78c6a;
 }
 
 .blue-string {
-  color: #82AAFF;
+  color: #82aaff;
 }
 
 .blue-shadow:hover {
-  border: 1px solid #82AAFF;
-  box-shadow: 0px 0px 12px #82AAFF;
+  border: 1px solid #82aaff;
+  box-shadow: 0px 0px 12px #82aaff;
 }
 
 .purple-string {
-  color: #C792EA;
+  color: #c792ea;
 }
 
 .purple-shadow:hover {
-  border: 1px solid #C792EA;
-  box-shadow: 0px 0px 12px #C792EA;
+  border: 1px solid #c792ea;
+  box-shadow: 0px 0px 12px #c792ea;
 }
 
 .cyan-string {
-  color: #89DDF3;
+  color: #89ddf3;
 }
 
 .cyan-shadow {
-  box-shadow: 0px 0px 4px #89DDF3;
+  box-shadow: 0px 0px 4px #89ddf3;
 }
 
 .white-string {
