@@ -7,68 +7,86 @@ let draggableElement;
 let blockSpace = document.getElementById('block-space');
 let pasteBlock = document.createElement('div');
 pasteBlock.id = 'paste-block';
-let rowBlock = false;
-let isPasteBefore = false;
+let offsetBlock = false;
+
+let offsetX;
+let offsetY;
+let clientX;
+let clientY;
+
+let isMainBlock;
 
 // _________________________DOWN______________________________
 document.addEventListener('pointerdown', e => {
   console.log('pointerdown');
+  console.log(e.target);
+  offsetX = e.offsetX;
+  offsetY = e.offsetY;
+  clientX = e.clientX;
+  clientY = e.clientY;
   isPointerDown = true;
 });
 
 // __________________________OVER_______________________________
 blockSpace.addEventListener('pointerover', e => {
-  console.log('pointerover');
-  // console.log(e.target);
-
   if (draggableElement) {
     if (e.target.classList.contains('block-space')) {
       pasteBlock.remove();
     }
-    if (e.target.classList.contains('sub-block-default')) {
+    if (e.target.classList.contains('sub-block')) {
       e.target.append(pasteBlock);
     }
+
     if (e.target.classList.contains('main-parent') === false) {
       if (
         e.target.classList.contains('row-block') ||
         e.target.classList.contains('main-block')
       ) {
-        rowBlock = e.target;
-        // console.log(e.offsetY);
-        if (isPasteBefore) {
-          rowBlock.before(pasteBlock);
-        } else {
-          rowBlock.after(pasteBlock);
-        }
-        if (rowBlock.classList.contains('sub-block-default')) {
-          rowBlock.append(pasteBlock);
-        }
+        offsetBlock = e.target;
+      } else {
+        offsetBlock = false;
       }
     }
-  } else {
-    rowBlock = false;
   }
 });
 
 // _________________________MOVE_______________________________
 document.addEventListener('pointermove', e => {
-  console.log('pointermove');
-
   if (isPointerDown && !isPointerMove) {
-    console.log(e.target);
-    let className = e.target.classList[0];
-    if (className === 'sample') {
+    if (e.target.classList.contains('sample')) {
       draggableElement = e.target.cloneNode(true);
       e.target.releasePointerCapture(e.pointerId);
 
       draggableElement.classList.add('draggable');
+      if (draggableElement.classList.contains('blue-shadow')) {
+        draggableElement.classList.add('blue-shadow-draggable');
+      }
+      draggableElement.classList.remove('main-block');
       draggableElement.classList.remove('sample');
+      draggableElement.classList.remove('row-block');
       draggableElement.style.transition = 'none';
       document.body.append(draggableElement);
-    } else if (className === 'main-block' || className === 'row-block') {
+    } else if (
+      e.target.classList.contains('main-parent') ||
+      e.target.classList.contains('row-block') ||
+      e.target.classList.contains('main-block')
+    ) {
       draggableElement = e.target;
       e.target.releasePointerCapture(e.pointerId);
       draggableElement.classList.add('draggable');
+      draggableElement.classList.remove('main-block');
+      draggableElement.classList.remove('main-parent');
+      draggableElement.classList.remove('row-block');
+      draggableElement.style.transition = 'none';
+      document.body.append(draggableElement);
+    } else if (e.target.classList[0] === 'sub-block') {
+      draggableElement = e.target.parentElement;
+      console.log(e.target.parentElement);
+      e.target.releasePointerCapture(e.pointerId);
+
+      draggableElement.classList.add('draggable');
+      draggableElement.classList.remove('main-parent');
+      draggableElement.classList.remove('row-block');
       draggableElement.style.transition = 'none';
       document.body.append(draggableElement);
     }
@@ -77,40 +95,41 @@ document.addEventListener('pointermove', e => {
   }
 
   if (isPointerMove && draggableElement) {
-    draggableElement.style.left = Math.round(e.clientX) + 'px';
-    draggableElement.style.top = Math.round(e.clientY) + 'px';
-    if (rowBlock) {
-      isPasteBefore = e.offsetY < rowBlock.offsetHeight / 2;
+    draggableElement.style.left = Math.round(e.clientX - offsetX) + 'px';
+    draggableElement.style.top = Math.round(e.clientY - offsetY) + 'px';
+
+    if (offsetBlock) {
+      if (e.offsetY < e.target.offsetHeight / 2) {
+        offsetBlock.before(pasteBlock);
+      } else {
+        offsetBlock.after(pasteBlock);
+      }
     }
   }
 });
 
 // __________________________UP_______________________________
 document.addEventListener('pointerup', e => {
-  console.log('pointerup>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-  console.log(e.target);
-
   if (draggableElement) {
-    let dropClass = e.target.classList[0];
-
-    if (dropClass === 'sample' || dropClass === 'block-menu') {
+    if (
+      e.target.classList.contains('sample') ||
+      e.target.classList.contains('block-menu')
+    ) {
       draggableElement.remove();
-    } else if (dropClass === 'block-space') {
+    } else if (e.target.classList.contains('block-space')) {
+      blockSpace.append(draggableElement);
       draggableElement.classList.remove('draggable');
+      draggableElement.classList.remove('main-block');
+      isMainBlock = true;
       draggableElement.classList.add('main-parent');
       draggableElement.style.transition = '0.3s';
-      blockSpace.append(draggableElement);
-    }
-
-    if (document.getElementById('paste-block') !== null) {
-      pasteBlock.replaceWith(draggableElement);
+    } else if (document.getElementById('paste-block') !== null) {
       draggableElement.classList.remove('draggable');
       draggableElement.classList.remove('main-parent');
+      draggableElement.classList.add('main-block');
       draggableElement.style.transition = '0.3s';
+      pasteBlock.replaceWith(draggableElement);
     }
-    // if (pasteBlock) {
-    //   paste.replaceWith(draggableElement);
-    // }
   }
   isPointerDown = false;
   isPointerMove = false;

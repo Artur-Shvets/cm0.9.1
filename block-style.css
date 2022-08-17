@@ -18,6 +18,7 @@ body {
 }
 
 #work-space {
+  background: rgba(0, 0, 0, 0.06);
   position: relative;
   height: 100%;
 }
@@ -38,6 +39,61 @@ body {
   height: 100%;
 }
 
+/* ___________________________________________________________________________BLOCKS */
+
+#paste-block {
+  pointer-events: none;
+  transition: 0.3s;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 6px 24px rgb(181, 255, 236), 0 0 12px rgb(245, 255, 198);
+  border: 1px solid rgb(181, 255, 236);
+  padding: 15px 0px;
+  border-radius: 15px;
+}
+
+.sample {
+  touch-action: none;
+  margin: 20px;
+  white-space: nowrap;
+  display: table;
+  transition: 0.3s;
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: -1px -1px 1px rgb(255, 255, 255),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 2px 2px 4px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.sample * {
+  pointer-events: none;
+}
+
+.draggable {
+  /* _____________________________________<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+  pointer-events: none;
+  position: absolute;
+  background-color: transparent;
+  backdrop-filter: blur(6px);
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid rgb(181, 255, 236);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3), 0 -6px 16px rgb(181, 255, 236),
+    0 6px 12px rgb(245, 255, 198);
+}
+
+.draggable *.main-block {
+  background-color: transparent;
+}
+.draggable *.sub-block {
+  background-color: transparent;
+}
+.draggable *.row-block {
+  background-color: transparent;
+}
+
+/* ___________________________________________________________________________VERTEX */
+
 .vertex {
   padding: 5px;
   display: inline-block;
@@ -56,30 +112,7 @@ body {
   border-radius: 10px;
 }
 
-#paste-block {
-  transition: 0.3s;
-  position: relative;
-  background-color: white;
-  box-shadow: 0px 0px 12px rgb(181, 255, 236);
-  border: 1px solid rgb(181, 255, 236);
-  padding: 10px 0px;
-  /* margin: -5px; */
-  border-radius: 10px;
-}
-
-.sample {
-  /* touch-action: none; */
-  margin: 20px;
-}
-
-.sample * {
-  pointer-events: none;
-}
-
-.draggable {
-  /* pointer-events: none; */
-  position: absolute;
-}
+/* ___________________________________________________________________________BLOCKS */
 
 .string {
   pointer-events: none;
@@ -92,9 +125,8 @@ body {
   padding: 0px 2px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0);
-  background-color: rgba(240, 240, 240, 0.5);
-  box-shadow: -3px -3px 8px rgb(255, 255, 255),
-    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+  box-shadow: -1px -1px 1px rgb(255, 255, 255),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 2px 2px 4px rgba(0, 0, 0, 0.1),
     inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
@@ -116,9 +148,9 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0);
   transition: 0.3s;
-  background-color: rgba(240, 240, 240, 0.5);
-  box-shadow: -3px -3px 8px rgb(255, 255, 255),
-    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+  background-color: rgba(240, 240, 240, 1);
+  box-shadow: -1px -1px 1px rgb(255, 255, 255),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 2px 2px 4px rgba(0, 0, 0, 0.1),
     inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
@@ -128,33 +160,19 @@ body {
 }
 
 .sub-block {
-  /* pointer-events: none; */
   transition: 0.3s;
-  border-radius: 10px;
-  margin-left: 14px;
-  display: block;
-  background-color: rgba(240, 240, 240, 0.5);
+  border-radius: 15px;
+  padding: 0;
+  min-height: 10px;
+  margin: 0 5px 0 14px;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .sub-block:hover {
   padding: 5px;
   border-radius: 15px;
-  box-shadow: -3px -3px 8px rgb(255, 255, 255),
-    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
-    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
-}
-
-.sub-block-default {
-  transition: 0.3s;
-  border-radius: 10px;
-  margin-left: 14px;
-  background-color: rgba(240, 240, 240, 0.5);
-}
-
-.sub-block-default:hover {
-  box-shadow: -3px -3px 8px rgb(255, 255, 255),
-    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
-    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 3px 3px 12px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 12px rgba(255, 255, 255, 0.1);
 }
 
 .main-block {
@@ -163,10 +181,9 @@ body {
   display: table;
   transition: 0.3s;
   border-radius: 10px;
-  background-color: rgba(240, 240, 240, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0);
-  box-shadow: -3px -3px 8px rgb(255, 255, 255),
-    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 3px 3px 8px rgba(0, 0, 0, 0.1),
+  background-color: rgba(240, 240, 240, 1);
+  box-shadow: -1px -1px 2px rgb(255, 255, 255),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 2px 2px 4px rgba(0, 0, 0, 0.1),
     inset -3px -3px 8px rgba(255, 255, 255, 0.1);
 }
 
@@ -175,14 +192,21 @@ body {
   padding: 5px;
 }
 
-.main-block:hover .sub-block-default {
-  border-radius: 20px;
-  padding: 10px;
+.main-parent {
+  touch-action: none;
+  white-space: nowrap;
+  display: table;
+  transition: 0.3s;
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+  position: absolute;
+  box-shadow: -1px -1px 1px rgb(255, 255, 255),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.01), 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.main-parent {
-  position: absolute;
-  /* touch-action: none; */
+.main-parent:hover {
+  border-radius: 15px;
+  padding: 5px;
 }
 
 /* ___________________________COLORS and SHADOWS________________________ */
