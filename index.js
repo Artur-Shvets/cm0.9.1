@@ -15,11 +15,12 @@ let clientX;
 let clientY;
 
 let isMainBlock;
+let isAfter = false;
+let isBefore = false;
 
 // _________________________DOWN______________________________
 document.addEventListener('pointerdown', e => {
   console.log('pointerdown');
-  console.log(e.target);
   offsetX = e.offsetX;
   offsetY = e.offsetY;
   clientX = e.clientX;
@@ -32,20 +33,26 @@ blockSpace.addEventListener('pointerover', e => {
   if (draggableElement) {
     if (e.target.classList.contains('block-space')) {
       pasteBlock.remove();
+      offsetBlock = false;
     }
-    if (e.target.classList.contains('sub-block')) {
+    if (
+      e.target.classList.contains('sub-block') &&
+      e.target.children.length === 0
+    ) {
       e.target.append(pasteBlock);
     }
 
-    if (e.target.classList.contains('main-parent') === false) {
-      if (
-        e.target.classList.contains('row-block') ||
-        e.target.classList.contains('main-block')
-      ) {
-        offsetBlock = e.target;
-      } else {
+    if (
+      e.target.classList.contains('row-block') ||
+      e.target.classList.contains('main-block')
+    ) {
+      if (e.target.classList.contains('main-parent')) {
         offsetBlock = false;
+      } else {
+        offsetBlock = e.target;
       }
+    } else {
+      offsetBlock = false;
     }
   }
 });
@@ -81,7 +88,7 @@ document.addEventListener('pointermove', e => {
       document.body.append(draggableElement);
     } else if (e.target.classList[0] === 'sub-block') {
       draggableElement = e.target.parentElement;
-      console.log(e.target.parentElement);
+      // console.log(e.target.parentElement);
       e.target.releasePointerCapture(e.pointerId);
 
       draggableElement.classList.add('draggable');
@@ -90,18 +97,17 @@ document.addEventListener('pointermove', e => {
       draggableElement.style.transition = 'none';
       document.body.append(draggableElement);
     }
-
     isPointerMove = true;
   }
 
   if (isPointerMove && draggableElement) {
     draggableElement.style.left = Math.round(e.clientX - offsetX) + 'px';
     draggableElement.style.top = Math.round(e.clientY - offsetY) + 'px';
-
     if (offsetBlock) {
-      if (e.offsetY < e.target.offsetHeight / 2) {
+      console.log(e.clientY);
+      if (e.offsetY < 5) {
         offsetBlock.before(pasteBlock);
-      } else {
+      } else if (e.offsetY > offsetBlock.offsetHeight - 5) {
         offsetBlock.after(pasteBlock);
       }
     }
@@ -120,13 +126,21 @@ document.addEventListener('pointerup', e => {
       blockSpace.append(draggableElement);
       draggableElement.classList.remove('draggable');
       draggableElement.classList.remove('main-block');
-      isMainBlock = true;
+      if (draggableElement.children[1].classList == 'sub-block') {
+        draggableElement.classList.add('main-block');
+      } else {
+        draggableElement.classList.add('row-block');
+      }
       draggableElement.classList.add('main-parent');
       draggableElement.style.transition = '0.3s';
     } else if (document.getElementById('paste-block') !== null) {
       draggableElement.classList.remove('draggable');
       draggableElement.classList.remove('main-parent');
-      draggableElement.classList.add('main-block');
+      if (draggableElement.children[1].classList == 'sub-block') {
+        draggableElement.classList.add('main-block');
+      } else {
+        draggableElement.classList.add('row-block');
+      }
       draggableElement.style.transition = '0.3s';
       pasteBlock.replaceWith(draggableElement);
     }

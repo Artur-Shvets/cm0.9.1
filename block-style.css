@@ -9,12 +9,25 @@ body {
   height: 100vh;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  /* height: 5px; */
+}
+
+::-webkit-scrollbar-thumb {
+  transition: 0.3s;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
 #block-menu {
+  overflow-y: scroll;
   position: absolute;
   background: rgba(0, 0, 0, 0.06);
   top: 0;
   left: 0;
   height: 100%;
+  width: 300px;
 }
 
 #work-space {
@@ -24,6 +37,7 @@ body {
 }
 
 #svg-space {
+  overflow-y: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -32,6 +46,7 @@ body {
 }
 
 #block-space {
+  overflow-y: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -42,14 +57,14 @@ body {
 /* ___________________________________________________________________________BLOCKS */
 
 #paste-block {
-  pointer-events: none;
+  /* pointer-events: none; */
   transition: 0.3s;
   position: relative;
   background-color: white;
-  box-shadow: 0 6px 24px rgb(181, 255, 236), 0 0 12px rgb(245, 255, 198);
+  box-shadow: 0 3px 24px rgb(181, 255, 236), 0 0 12px rgb(235, 255, 198);
   border: 1px solid rgb(181, 255, 236);
   padding: 15px 0px;
-  border-radius: 15px;
+  border-radius: 30px;
 }
 
 .sample {
@@ -74,18 +89,16 @@ body {
   pointer-events: none;
   position: absolute;
   background-color: transparent;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
+  transition: 0.6s;
   padding: 5px;
   border-radius: 10px;
   border: 1px solid rgb(181, 255, 236);
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3), 0 -6px 16px rgb(181, 255, 236),
-    0 6px 12px rgb(245, 255, 198);
+    0 6px 12px rgb(235, 255, 198);
 }
 
 .draggable *.main-block {
-  background-color: transparent;
-}
-.draggable *.sub-block {
   background-color: transparent;
 }
 .draggable *.row-block {
@@ -142,6 +155,7 @@ body {
 }
 
 .row-block {
+  cursor: grab;
   touch-action: none;
   padding: 0px 5px;
   display: table;
@@ -170,12 +184,13 @@ body {
 
 .sub-block:hover {
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 20px;
   box-shadow: inset 3px 3px 12px rgba(0, 0, 0, 0.1),
     inset -3px -3px 12px rgba(255, 255, 255, 0.1);
 }
 
 .main-block {
+  cursor: grab;
   touch-action: none;
   white-space: nowrap;
   display: table;
