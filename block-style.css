@@ -2,9 +2,11 @@ body {
   margin: 0;
   -webkit-user-select: none;
   background-color: rgb(240, 240, 240);
+  /* background-color: rgba(0, 0, 0, 0.5); */
   font-family: Consolas, monospace;
   font-size: 14px;
   line-height: 1.4;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
 }
@@ -24,10 +26,18 @@ body {
   overflow-y: scroll;
   position: absolute;
   background: rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  gap: 20px;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 300px;
+  height: 100vh;
+  width: fit-content;
+}
+
+#block-menu > h4 {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 #work-space {
@@ -67,12 +77,50 @@ body {
   border-radius: 30px;
 }
 
+.drop-list {
+  cursor: default;
+}
+
+#append {
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 2px;
+  color: white;
+  background-color: #f77f6a;
+  white-space: pre-line;
+  /* padding: 3px 5px; */
+}
+
+#on-mouse-event {
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 2px;
+  color: white;
+  background-color: #f77f6a;
+  white-space: pre-line;
+  /* padding: 3px 5px; */
+}
+
+#append:hover {
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), inset 1px 1px 4px #d89cff,
+    inset -1px -1px 6px #ffa857;
+}
+
+#on-mouse-event:hover {
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), inset 1px 1px 4px #d89cff,
+    inset -1px -1px 6px #ffa857;
+}
+
 .sample {
   touch-action: none;
-  margin: 20px;
+  margin-top: 20px;
   white-space: nowrap;
-  display: table;
-  transition: 0.3s;
+  /* display: table; */
+  /* transition: 0.3s; */
   border-radius: 10px;
   background-color: rgb(240, 240, 240);
   box-shadow: -1px -1px 1px rgb(255, 255, 255),
@@ -88,11 +136,11 @@ body {
   /* _____________________________________<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   pointer-events: none;
   position: absolute;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
-  transition: 0.6s;
+  /* transition: 0.6s; */
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px solid rgb(181, 255, 236);
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3), 0 -6px 16px rgb(181, 255, 236),
     0 6px 12px rgb(235, 255, 198);
